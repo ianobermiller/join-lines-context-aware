@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:join-lines-context-aware.helloWorld"
+		"onCommand:join-lines-context-aware.join"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "join-lines-context-aware.helloWorld",
-				"title": "Hello World"
+				"command": "join-lines-context-aware.join",
+				"title": "Join Lines (Context Aware)"
 			}
 		]
 	},
