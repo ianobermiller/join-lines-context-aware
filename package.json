@@ -6,6 +6,7 @@
   "repository": {
     "url": "https://github.com/ianobermiller/join-lines-context-aware"
   },
+  "publisher": "ianobermiller",
   "engines": {
     "vscode": "^1.45.0"
   },
@@ -50,5 +51,8 @@
     "bracketSpacing": false,
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "dependencies": {
+    "vsce": "^1.75.0"
   }
 }
