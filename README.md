@@ -1,4 +1,4 @@
-# join-lines-context-aware README
+# Join Lines Context Aware
 
 This is the README for your extension "join-lines-context-aware". After writing up a brief description, we recommend including the following sections.
 
