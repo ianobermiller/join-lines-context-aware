@@ -1,4 +1,4 @@
-const joinMarker = 'nDW;C%yh3PK}2Lq8ne-2$=pvjSF+Th';
+const joinMarker = 'toTGdxMQxk4Z8ZTbLduzgDw51GQJWm8BWdCJshYJ';
 const stringConcatRegex = new RegExp(
   "(' ?(\\+|\\.)?" + joinMarker + '\')|(" ?(\\+|\\.)?' + joinMarker + '")',
 );
