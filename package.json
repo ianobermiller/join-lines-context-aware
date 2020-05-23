@@ -2,7 +2,7 @@
   "name": "join-lines-context-aware",
   "displayName": "Join Lines Context Aware",
   "description": "Join lines command that does what you expect with comments and string literals.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": {
     "url": "https://github.com/ianobermiller/join-lines-context-aware"
   },
