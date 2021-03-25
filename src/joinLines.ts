@@ -14,7 +14,7 @@ export default function joinLines(
     newLines = newLines.replace(joinMarker + '// ', ' ');
   }
 
-  if (firstLine.trim().startsWith('* ')) {
+  if (firstLine.trim().startsWith('* ') || firstLine.trim().startsWith('/*')) {
     newLines = newLines.replace(joinMarker + '* ', ' ');
   }
 
