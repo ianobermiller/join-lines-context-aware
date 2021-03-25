@@ -56,6 +56,36 @@ test('c-style line comments', () => {
   );
 });
 
+test('c-style block comments', () => {
+  assert.strictEqual(
+    joinLinesTest(`
+      /* Lorem ipsum
+       * dolor sit amet
+    `),
+    `/* Lorem ipsum dolor sit amet`,
+  );
+});
+
+test('Javadoc comments', () => {
+  assert.strictEqual(
+    joinLinesTest(`
+      /** Lorem ipsum
+       * dolor sit amet
+    `),
+    `/** Lorem ipsum dolor sit amet`,
+  );
+});
+
+test('Qt-style doc comments', () => {
+  assert.strictEqual(
+    joinLinesTest(`
+      /*! Lorem ipsum
+       * dolor sit amet
+    `),
+    `/** Lorem ipsum dolor sit amet`,
+  );
+});
+
 test('scripting-style line comments', () => {
   assert.strictEqual(
     joinLinesTest(`
