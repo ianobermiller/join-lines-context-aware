@@ -44,6 +44,7 @@
     "glob": "^7.1.6",
     "mocha": "^7.1.2",
     "typescript": "^3.8.3",
+    "vsce": "^1.75.0",
     "vscode-test": "^1.3.0"
   },
   "prettier": {
@@ -51,8 +52,5 @@
     "bracketSpacing": false,
     "singleQuote": true,
     "trailingComma": "all"
-  },
-  "dependencies": {
-    "vsce": "^1.75.0"
   }
 }

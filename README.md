@@ -26,6 +26,10 @@ command is `ctrl+j` or `cmd+j` on Mac.
 
 Users appreciate release notes as you update your extension.
 
+### 1.0.1
+
+- Fix joining the first two lines of C-style block comments, thanks @Fbonazzi
+
 ### 1.0.0
 
-Initial release, ported from the [Join Lines Smarter Atom Extension](https://github.com/ianobermiller/join-lines-smarter).
+- Initial release, ported from the [Join Lines Smarter Atom Extension](https://github.com/ianobermiller/join-lines-smarter).
