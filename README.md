@@ -1,6 +1,6 @@
 # Join Lines Context Aware
 
-A language-agnostic, context-aware Join Lines command.
+A language-agnostic, context-aware Join Lines command for VS Code.
 
 ![Join Lines Context Aware animation](images/join-lines-context-aware.gif)
 
@@ -12,7 +12,8 @@ A language-agnostic, context-aware Join Lines command.
 
 ## Usage
 
-After installing the extension, add a keybinding for it. The default Join Lines command is `ctrl+j`:
+After installing the extension, add a keybinding for it. The default Join Lines
+command is `ctrl+j` or `cmd+j` on Mac.
 
 ```
 {
