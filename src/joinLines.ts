@@ -22,6 +22,10 @@ export default function joinLines(
     newLines = newLines.replace(joinMarker + '# ', ' ');
   }
 
+  if (firstLine.trim().startsWith('--')) {
+    newLines = newLines.replace(new RegExp(joinMarker + '--\\s+', 'ug'), ' ');
+  }
+
   if (firstLine.trim().startsWith('; ')) {
     newLines = newLines.replace(joinMarker + '; ', ' ');
   }
