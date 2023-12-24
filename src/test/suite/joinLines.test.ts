@@ -96,6 +96,26 @@ test('scripting-style line comments', () => {
   );
 });
 
+test('Haskell-style line comments', () => {
+  assert.strictEqual(
+    joinLinesTest(`
+      -- Lorem ipsum
+      --   dolor sit amet
+    `),
+    `-- Lorem ipsum dolor sit amet`,
+  );
+});
+
+test('Haskell-style doc line comments', () => {
+  assert.strictEqual(
+    joinLinesTest(`
+      -- | Lorem ipsum
+      --   dolor sit amet
+    `),
+    `-- | Lorem ipsum dolor sit amet`,
+  );
+});
+
 test('sql-style line comments', () => {
   assert.strictEqual(
     joinLinesTest(`
