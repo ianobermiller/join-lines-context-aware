@@ -32,6 +32,10 @@
 ; sql
 ; world
 
+-- hello
+--     haskell
+-- world
+
 foo(
   bar,
 );

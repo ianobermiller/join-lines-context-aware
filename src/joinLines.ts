@@ -1,37 +1,33 @@
+import escapeRegExp from 'lodash/escapeRegExp';
+
 const joinMarker = 'toTGdxMQxk4Z8ZTbLduzgDw51GQJWm8BWdCJshYJ';
 const stringConcatRegex = new RegExp(
   "(' ?(\\+|\\.)?" + joinMarker + '\')|(" ?(\\+|\\.)?' + joinMarker + '")',
 );
 
+const COMMENT_PREFIXES = ['//', '#', '--', ';', '*', '/*'];
+const COMMENT_REGEX = new RegExp(
+  '^\\s*(' + COMMENT_PREFIXES.map(escapeRegExp).join('|') + ')\\s*',
+);
+const REPLACEMENT: Record<string, string | undefined> = {'/*': '*'};
+
 export default function joinLines(
   firstLine: string,
   secondLine: string,
 ): string {
-  let newLines = firstLine.trimRight() + joinMarker + secondLine.trimLeft();
+  let newLines = firstLine.trimEnd() + joinMarker + secondLine.trimStart();
   newLines = newLines.replace(stringConcatRegex, '');
 
-  if (firstLine.trim().startsWith('//')) {
-    newLines = newLines.replace(joinMarker + '// ', ' ');
+  const lineCommentMatch = firstLine.match(COMMENT_REGEX);
+  if (lineCommentMatch) {
+    let commentPrefix = lineCommentMatch[1];
+    commentPrefix = REPLACEMENT[commentPrefix] || commentPrefix;
+    newLines = newLines.replace(
+      new RegExp(joinMarker + escapeRegExp(commentPrefix) + '\\s*'),
+      ' ',
+    );
   }
 
-  if (firstLine.trim().startsWith('* ') || firstLine.trim().startsWith('/*')) {
-    newLines = newLines.replace(joinMarker + '* ', ' ');
-  }
-
-  if (firstLine.trim().startsWith('# ')) {
-    newLines = newLines.replace(joinMarker + '# ', ' ');
-  }
-
-  if (firstLine.trim().startsWith('--')) {
-    newLines = newLines.replace(new RegExp(joinMarker + '--\\s+', 'ug'), ' ');
-  }
-
-  if (firstLine.trim().startsWith('; ')) {
-    newLines = newLines.replace(joinMarker + '; ', ' ');
-  }
-
-  // Eliminate trailing comma and space when joining a line with a comma
-  // with a line with a closing bracket
   if (firstLine.trim().endsWith(',') && startsWithClosingBracket(secondLine)) {
     newLines = newLines.replace(',' + joinMarker, '');
   }
