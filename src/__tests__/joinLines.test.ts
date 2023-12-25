@@ -1,5 +1,6 @@
-import * as assert from 'assert';
-import joinLines from '../../joinLines';
+import * as assert from 'node:assert';
+import {expect, test} from 'vitest';
+import joinLines from '../joinLines';
 
 function joinLinesTest(lines: string): string {
   const [firstLine, secondLine] = lines.trim().split('\n');
@@ -7,261 +8,235 @@ function joinLinesTest(lines: string): string {
 }
 
 test('double quotes with dot delimiter', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       "Lorem ipsum ".
       "dolor sit amet"
     `),
-    `"Lorem ipsum dolor sit amet"`,
-  );
+  ).toEqual(`"Lorem ipsum dolor sit amet"`);
 });
 
 test('single quotes with plus delimiter', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       'Lorem ipsum ' +
       'dolor sit amet'
     `),
-    `'Lorem ipsum dolor sit amet'`,
-  );
+  ).toEqual(`'Lorem ipsum dolor sit amet'`);
 });
 
 test('single quotes with plus delimiter', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       'Lorem ipsum ' +
       'dolor sit amet'
     `),
-    `'Lorem ipsum dolor sit amet'`,
-  );
+  ).toEqual(`'Lorem ipsum dolor sit amet'`);
 });
 
 test('single quotes with no delimiter', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       'Lorem ipsum '
       'dolor sit amet'
     `),
-    `'Lorem ipsum dolor sit amet'`,
-  );
+  ).toEqual(`'Lorem ipsum dolor sit amet'`);
 });
 
 test('c-style line comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       // Lorem ipsum
       // dolor sit amet
     `),
-    `// Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`// Lorem ipsum dolor sit amet`);
 });
 
 test('c-style block comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       /* Lorem ipsum
        * dolor sit amet
     `),
-    `/* Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`/* Lorem ipsum dolor sit amet`);
 });
 
 test('Javadoc comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       /** Lorem ipsum
        * dolor sit amet
     `),
-    `/** Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`/** Lorem ipsum dolor sit amet`);
 });
 
 test('Qt-style doc comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       /*! Lorem ipsum
        * dolor sit amet
     `),
-    `/*! Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`/*! Lorem ipsum dolor sit amet`);
 });
 
 test('scripting-style line comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       # Lorem ipsum
       # dolor sit amet
     `),
-    `# Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`# Lorem ipsum dolor sit amet`);
 });
 
 test('Haskell-style line comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       -- Lorem ipsum
       --   dolor sit amet
     `),
-    `-- Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`-- Lorem ipsum dolor sit amet`);
 });
 
 test('Haskell-style doc line comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       -- | Lorem ipsum
       --   dolor sit amet
     `),
-    `-- | Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`-- | Lorem ipsum dolor sit amet`);
 });
 
 test('sql-style line comments', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       ; Lorem ipsum
       ; dolor sit amet
     `),
-    `; Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`; Lorem ipsum dolor sit amet`);
 });
 
 test('bullets or docblock', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       * Lorem ipsum
       * dolor sit amet
     `),
-    `* Lorem ipsum dolor sit amet`,
-  );
+  ).toEqual(`* Lorem ipsum dolor sit amet`);
 });
 
 test('no space if opening paren', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       foo(
         bar
     `),
-    `foo(bar`,
-  );
+  ).toEqual(`foo(bar`);
 });
 
 test('no space if opening square bracket', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       [
         bar
     `),
-    `[bar`,
-  );
+  ).toEqual(`[bar`);
 });
 
 test('no space if opening curly brace', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       {
         bar
     `),
-    `{bar`,
-  );
+  ).toEqual(`{bar`);
 });
 
 test('no space if opening angle bracket', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       foo<
         bar
     `),
-    `foo<bar`,
-  );
+  ).toEqual(`foo<bar`);
 });
 
 test('yes space if opening angle bracket as operator', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
       foo <
         bar
     `),
-    `foo < bar`,
-  );
+  ).toEqual(`foo < bar`);
 });
 
 test('no space if closing paren', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo
       )
     `),
-    `foo)`,
-  );
+  ).toEqual(`foo)`);
 });
 
 test('no space if closing square bracket', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo
       ]
     `),
-    `foo]`,
-  );
+  ).toEqual(`foo]`);
 });
 
 test('no space if closing curly brace', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo
       }
     `),
-    `foo}`,
-  );
+  ).toEqual(`foo}`);
 });
 
 test('no space if closing angle bracket', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo
       >
     `),
-    `foo>`,
-  );
+  ).toEqual(`foo>`);
 });
 
 test('no space or comma if closing paren', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo,
       )
     `),
-    `foo)`,
-  );
+  ).toEqual(`foo)`);
 });
 
 test('no space or comma if closing square bracket', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo,
       ]
     `),
-    `foo]`,
-  );
+  ).toEqual(`foo]`);
 });
 
 test('no space or comma if closing curly brace', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo,
       }
     `),
-    `foo}`,
-  );
+  ).toEqual(`foo}`);
 });
 
 test('no space or comma if closing angle bracket', () => {
-  assert.strictEqual(
+  expect(
     joinLinesTest(`
         foo,
       >
     `),
-    `foo>`,
-  );
+  ).toEqual(`foo>`);
 });
